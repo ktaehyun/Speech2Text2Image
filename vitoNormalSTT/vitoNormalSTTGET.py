@@ -28,4 +28,4 @@ def getSTT(filepath):
     print(time.time()-n_time)
 
 # sample
-print(getSTT("1_0000.mp3"))
+print(getSTT("../mp3Data/1_0000.mp3"))
