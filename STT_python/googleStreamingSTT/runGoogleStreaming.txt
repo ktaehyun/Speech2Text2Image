@@ -1,0 +1,13 @@
+https://webnautes.tistory.com/1247
+
+환경변수 시스템 변수상에 새로 만들기 후
+변수 이름 : GOOGLE_APPLICATION_CREDENTIALS
+변수 값 : mylittletale-931875f1d804.json 파일의 파일 경로를 설정해 줌
+
+GOOGLE Cloud SDK 설치
+GOOGLE Cloud SDK Shell에 gcloud init 입력
+shell 키 값 입력 창에 931875f1d8045ab5b18daf1020a317a84bb156aa 입력
+파이썬 실행 후 실행할 가상환경 terminal창에
+pip install google-cloud-speech
+pip install --upgrade google-cloud-storage
+pip install pyaudio
