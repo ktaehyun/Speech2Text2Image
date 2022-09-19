@@ -11,6 +11,7 @@ import cv2
 import numpy as np
 import jsonpickle
 import matplotlib.pyplot as plt
+import base64
 
 app = Flask(__name__)
 app.debug = True
@@ -22,13 +23,16 @@ def showImage(img):
 
 @app.route('/img/getImage', methods=['POST'])
 def receive():
-    nparr = np.fromstring(request.data, np.uint8)
+    data = request.get_json()
+    img = base64.b64decode(data["img"])
+    title = data["title"]
+    nparr = np.fromstring(img, dtype=np.uint8)
     # decode image
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     
     # print(img)
     showImage(img)
-    response = {'message':'image: received. size={}x{}'.format(img.shape[0], img.shape[1])}
+    response = {'message':'image: {} received. size={}x{}'.format(title, img.shape[0], img.shape[1])}
 
     # encode response
     response = jsonpickle.encode(response)
