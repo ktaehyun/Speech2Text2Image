@@ -2,6 +2,7 @@ import requests
 import vitoNormalSTTPOST
 import vitoToken
 import time
+from googleTranslator import GoogleTranslator
 
 def getSTT(filepath):
     transcribe_id = vitoNormalSTTPOST.postSTT(voice_filepath=filepath)
@@ -13,7 +14,6 @@ def getSTT(filepath):
             headers={'Authorization': 'bearer ' + vitoToken.vitoToken()},
         )
         resp.raise_for_status()
-        print(resp.json())
         all_text = []
         try:
             for x in resp.json()['results']['utterances']:
@@ -22,10 +22,10 @@ def getSTT(filepath):
             continue
         if resp.json()['status'] == 'completed':
             break
-        time.sleep(0.3)
+        time.sleep(0.2)
 
-    print(' '.join(all_text))
-    print(time.time()-n_time)
+    return ' '.join(all_text)
+    # print(time.time()-n_time)
 
 # sample
-print(getSTT("../mp3Data/1_0000.mp3"))
+print('그는 괜찮은 척 하려고 애쓰는 것 같았다 => ', GoogleTranslator(getSTT("../mp3Data/1_0000.mp3")))
