@@ -24,6 +24,6 @@ def postSTT(voice_filepath):
     )
     resp.raise_for_status()
     transcribe_id = resp.json()
-    print(transcribe_id)
+    # print(transcribe_id)
 
     return transcribe_id
